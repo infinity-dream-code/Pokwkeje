@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB Skill Test - Niko Surya Adi Prananta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .download-section {
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .download-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .download-btn.print {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .download-btn.print:hover {
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .instructions {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 5px 0;
+        }
+
+        .content {
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .print-only {
+            display: none;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            break-after: avoid;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            break-after: avoid;
+        }
+
+        .pilgan-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            break-inside: avoid;
+        }
+
+        .pilgan-table th,
+        .pilgan-table td {
+            padding: 12px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .pilgan-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .pilgan-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .algorithm-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            break-inside: avoid;
+        }
+
+        .stock-info {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            break-inside: avoid;
+        }
+
+        .stock-info h4 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .stock-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stock-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(21, 101, 192, 0.1);
+        }
+
+        .stock-list li:last-child {
+            border-bottom: none;
+        }
+
+        .database-schema {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            break-inside: avoid;
+        }
+
+        .entity {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            break-inside: avoid;
+        }
+
+        .entity h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .attributes {
+            list-style: none;
+            padding: 0;
+        }
+
+        .attributes li {
+            padding: 3px 0;
+            color: #555;
+        }
+
+        .primary-key {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .foreign-key {
+            font-style: italic;
+            color: #3498db;
+        }
+
+        .relations {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            break-inside: avoid;
+        }
+
+        .relations h4 {
+            color: #ef6c00;
+            margin-bottom: 10px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: none;
+            }
+            
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 2px solid #667eea;
+            }
+            
+            .download-section {
+                display: none;
+            }
+            
+            .print-only {
+                display: block;
+            }
+            
+            .pilgan-table th {
+                background: #f0f0f0 !important;
+                color: black !important;
+                border: 1px solid #ccc;
+            }
+            
+            .pilgan-table td {
+                border: 1px solid #ccc;
+            }
+            
+            .stock-info,
+            .database-schema,
+            .algorithm-box {
+                background: #f9f9f9 !important;
+                border: 1px solid #ddd;
+            }
+            
+            .entity {
+                border: 1px solid #ddd;
+                background: white;
+            }
+            
+            .relations {
+                background: #f5f5f5 !important;
+                border: 1px solid #ddd;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            
+            .section h2 {
+                page-break-after: avoid;
+                border-bottom: 2px solid #333;
+            }
+            
+            .section h3 {
+                page-break-after: avoid;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .download-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WEB Skill Test</h1>
+            <p>Niko Surya Adi Prananta</p>
+            <div class="print-only" style="margin-top: 20px; font-size: 0.9em;">
+                <p>Generated: <span id="print-date"></span></p>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadAsText()">
+                    📄 Download Text
+                </button>
+                <button class="download-btn print" onclick="window.print()">
+                    🖨️ Print/Save as PDF
+                </button>
+            </div>
+            
+            <div class="instructions">
+                <h3>📋 Cara Download PDF:</h3>
+                <ol>
+                    <li><strong>Klik "Print/Save as PDF"</strong> atau tekan Ctrl+P</li>
+                    <li>Di dialog print, <strong>pilih "Save as PDF"</strong> sebagai destination</li>
+                    <li>Atur layout ke <strong>"Portrait"</strong></li>
+                    <li>Pastikan <strong>"More settings"</strong> → <strong>"Background graphics"</strong> dicentang</li>
+                    <li>Klik <strong>"Save"</strong> dan pilih lokasi file</li>
+                </ol>
+                <p><strong>💡 Tips:</strong> Gunakan browser Chrome atau Edge untuk hasil terbaik!</p>
+            </div>
+        </div>
+
+        <div class="content" id="content">
+            <div class="section">
+                <h2>Jawaban Pilihan Ganda</h2>
+                <table class="pilgan-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Jawaban</th>
+                            <th>No.</th>
+                            <th>Jawaban</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>B</td><td>11</td><td>D</td></tr>
+                        <tr><td>2</td><td>A</td><td>12</td><td>C</td></tr>
+                        <tr><td>3</td><td>A</td><td>13</td><td>C</td></tr>
+                        <tr><td>4</td><td>C</td><td>14</td><td>C</td></tr>
+                        <tr><td>5</td><td>E</td><td>15</td><td>B</td></tr>
+                        <tr><td>6</td><td>B</td><td>16</td><td>B</td></tr>
+                        <tr><td>7</td><td>E</td><td>17</td><td>B</td></tr>
+                        <tr><td>8</td><td>B</td><td>18</td><td>B</td></tr>
+                        <tr><td>9</td><td>C</td><td>19</td><td>A</td></tr>
+                        <tr><td>10</td><td>E</td><td>20</td><td>A</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Jawaban Essay</h2>
+                
+                <h3>1. Algoritma Mesin ATM</h3>
+                <div class="stock-info">
+                    <h4>Kondisi Awal Stok ATM:</h4>
+                    <ul class="stock-list">
+                        <li>Rp 100.000 → 7 lembar</li>
+                        <li>Rp 10.000 → 8 lembar</li>
+                        <li>Rp 5.000 → 8 lembar</li>
+                        <li>Rp 1.000 → 10 lembar</li>
+                    </ul>
+                </div>
+
+                <p><strong>Prinsip Algoritma:</strong><br>
+                Mengeluarkan uang dari pecahan terbesar ke terkecil, memeriksa stok yang tersedia, dan jika stok tidak mencukupi, mengeluarkan sisa pecahan yang tersedia.</p>
+
+                <div class="algorithm-box">
+                    <strong>// Deklarasi variabel global</strong><br>
+                    stok[100000] = 7<br>
+                    stok[10000] = 8<br>
+                    stok[5000] = 8<br>
+                    stok[1000] = 10<br><br>
+
+                    <strong>PROSEDUR AmbilUang(jumlah)</strong><br>
+                    BEGIN<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pecahan = [100000, 10000, 5000, 1000]<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;UNTUK i = 0 SAMPAI panjang(pecahan) - 1 LAKUKAN<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JIKA jumlah >= pecahan[i] DAN stok[pecahan[i]] > 0 MAKA<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ambil = jumlah DIV pecahan[i]<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JIKA ambil > stok[pecahan[i]] MAKA<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ambil = stok[pecahan[i]]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AKHIR JIKA<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stok[pecahan[i]] = stok[pecahan[i]] - ambil<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jumlah = jumlah - (ambil * pecahan[i])<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CETAK ambil, "lembar Rp", pecahan[i]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AKHIR JIKA<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;AKHIR UNTUK<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;JIKA jumlah > 0 MAKA<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CETAK "Stok tidak mencukupi untuk jumlah ini"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;AKHIR JIKA<br>
+                    END
+                </div>
+
+                <p><strong>Contoh Eksekusi:</strong><br>
+                Input: Rp 325.000<br>
+                Output: 3 lembar Rp 100.000, 2 lembar Rp 10.000, 1 lembar Rp 5.000</p>
+
+                <h3>2. Rancangan Skema Basis Data Register Ibu Hamil</h3>
+                <div class="database-schema">
+                    <div class="entity">
+                        <h4>IbuHamil</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_ibu (Primary Key)</li>
+                            <li>no_urut</li>
+                            <li>nik</li>
+                            <li>nama</li>
+                            <li>tgl_lahir</li>
+                            <li>tgl_hamil</li>
+                            <li>alamat</li>
+                            <li class="foreign-key">id_wilayah (Foreign Key)</li>
+                            <li>kehamilan_ke</li>
+                            <li class="foreign-key">id_suami (Foreign Key)</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Suami</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_suami (Primary Key)</li>
+                            <li>nama_suami</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Wilayah</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_wilayah (Primary Key)</li>
+                            <li>desa</li>
+                            <li>kecamatan</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Kunjungan</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_kunjungan (Primary Key)</li>
+                            <li class="foreign-key">id_ibu (Foreign Key)</li>
+                            <li>tanggal</li>
+                            <li>BB (Berat Badan)</li>
+                            <li>TB (Tinggi Badan)</li>
+                            <li>LILA (Lingkar Lengan Atas)</li>
+                            <li>TENSI (Tekanan Darah)</li>
+                            <li>HB (Hemoglobin)</li>
+                            <li>kondisi_ibu</li>
+                            <li>kondisi_kehamilan</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Bayi</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_bayi (Primary Key)</li>
+                            <li class="foreign-key">id_ibu (Foreign Key)</li>
+                            <li>kondisi_bayi_lahir</li>
+                            <li>status_lahir</li>
+                        </ul>
+                    </div>
+
+                    <div class="relations">
+                        <h4>Relasi:</h4>
+                        <p>• IbuHamil 1 ——— * Kunjungan<br>
+                        • IbuHamil 1 ——— 1 Suami<br>
+                        • IbuHamil 1 ——— 1 Wilayah<br>
+                        • IbuHamil 1 ——— 1 Bayi</p>
+                    </div>
+                </div>
+
+                <h3>3. Rancangan Skema Basis Data Poliklinik Serba Sehat</h3>
+                <div class="database-schema">
+                    <div class="entity">
+                        <h4>Poly</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_poly (Primary Key)</li>
+                            <li>nama_poly</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Dokter</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_dokter (Primary Key)</li>
+                            <li>nama_dokter</li>
+                            <li>alamat</li>
+                            <li>tarif</li>
+                            <li>spesialisasi</li>
+                            <li>no_hp</li>
+                            <li class="foreign-key">id_poly (Foreign Key)</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Pasien</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_pasien (Primary Key)</li>
+                            <li>no_reg</li>
+                            <li>nama_pasien</li>
+                            <li>jk (Jenis Kelamin)</li>
+                            <li>alamat</li>
+                            <li class="foreign-key">id_kategori (Foreign Key)</li>
+                            <li>no_hp</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>KategoriPasien</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_kategori (Primary Key)</li>
+                            <li>nama_kategori</li>
+                        </ul>
+                    </div>
+
+                    <div class="entity">
+                        <h4>Kunjungan</h4>
+                        <ul class="attributes">
+                            <li class="primary-key">id_kunjungan (Primary Key)</li>
+                            <li class="foreign-key">id_pasien (Foreign Key)</li>
+                            <li class="foreign-key">id_poly (Foreign Key)</li>
+                            <li class="foreign-key">id_dokter (Foreign Key)</li>
+                            <li>tanggal</li>
+                            <li>keluhan</li>
+                            <li>diagnosa</li>
+                            <li>tindakan</li>
+                        </ul>
+                    </div>
+
+                    <div class="relations">
+                        <h4>Relasi:</h4>
+                        <p>• Poly 1 ——— * Dokter<br>
+                        • Poly 1 ——— * Kunjungan<br>
+                        • Dokter 1 ——— * Kunjungan<br>
+                        • Pasien 1 ——— * Kunjungan<br>
+                        • Pasien * ——— 1 KategoriPasien</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set print date
+        document.getElementById('print-date').textContent = new Date().toLocaleDateString('id-ID');
+        
+        function downloadAsText() {
+            const content = `WEB SKILL TEST - NIKO SURYA ADI PRANANTA
+${'='.repeat(50)}
+
+JAWABAN PILIHAN GANDA
+${'-'.repeat(25)}
+1. B    6. B    11. D    16. B
+2. A    7. E    12. C    17. B
+3. A    8. B    13. C    18. B
+4. C    9. C    14. C    19. A
+5. E    10. E   15. B    20. A
+
+JAWABAN ESSAY
+${'-'.repeat(15)}
+
+1. ALGORITMA MESIN ATM
+${'-'.repeat(20)}
+
+Kondisi Awal Stok ATM:
+• Rp 100.000 → 7 lembar
+• Rp 10.000 → 8 lembar
+• Rp 5.000 → 8 lembar
+• Rp 1.000 → 10 lembar
+
+Prinsip Algoritma:
+Mengeluarkan uang dari pecahan terbesar ke terkecil, memeriksa stok yang tersedia, dan jika stok tidak mencukupi, mengeluarkan sisa pecahan yang tersedia.
+
+Implementasi Algoritma:
+
+// Deklarasi variabel global
+stok[100000] = 7
+stok[10000] = 8
+stok[5000] = 8
+stok[1000] = 10
+
+PROSEDUR AmbilUang(jumlah)
+BEGIN
+    pecahan = [100000, 10000, 5000, 1000]
+    
+    UNTUK i = 0 SAMPAI panjang(pecahan) - 1 LAKUKAN
+        JIKA jumlah >= pecahan[i] DAN stok[pecahan[i]] > 0 MAKA
+            ambil = jumlah DIV pecahan[i]
+            
+            JIKA ambil > stok[pecahan[i]] MAKA
+                ambil = stok[pecahan[i]]
+            AKHIR JIKA
+            
+            stok[pecahan[i]] = stok[pecahan[i]] - ambil
+            jumlah = jumlah - (ambil * pecahan[i])
+            
+            CETAK ambil, "lembar Rp", pecahan[i]
+        AKHIR JIKA
+    AKHIR UNTUK
+    
+    JIKA jumlah > 0 MAKA
+        CETAK "Stok tidak mencukupi untuk jumlah ini"
+    AKHIR JIKA
+END
+
+Contoh Eksekusi:
+Input: Rp 325.000
+Output: 3 lembar Rp 100.000, 2 lembar Rp 10.000, 1 lembar Rp 5.000
+
+2. RANCANGAN SKEMA BASIS DATA REGISTER IBU HAMIL
+${'-'.repeat(50)}
+
+Entitas:
+
+IbuHamil:
+- id_ibu (Primary Key)
+- no_urut
+- nik
+- nama
+- tgl_lahir
+- tgl_hamil
+- alamat
+- id_wilayah (Foreign Key)
+- kehamilan_ke
+- id_suami (Foreign Key)
+
+Suami:
+- id_suami (Primary Key)
+- nama_suami
+
+Wilayah:
+- id_wilayah (Primary Key)
+- desa
+- kecamatan
+
+Kunjungan:
+- id_kunjungan (Primary Key)
+- id_ibu (Foreign Key)
+- tanggal
+- BB (Berat Badan)
+- TB (Tinggi Badan)
+- LILA (Lingkar Lengan Atas)
+- TENSI (Tekanan Darah)
+- HB (Hemoglobin)
+- kondisi_ibu
+- kondisi_kehamilan
+
+Bayi:
+- id_bayi (Primary Key)
+- id_ibu (Foreign Key)
+- kondisi_bayi_lahir
+- status_lahir
+
+Relasi:
+• IbuHamil 1 ——— * Kunjungan
+• IbuHamil 1 ——— 1 Suami
+• IbuHamil 1 ——— 1 Wilayah
+• IbuHamil 1 ——— 1 Bayi
+
+3. RANCANGAN SKEMA BASIS DATA POLIKLINIK SERBA SEHAT
+${'-'.repeat(55)}
+
+Entitas:
+
+Poly:
+- id_poly (Primary Key)
+- nama_poly
+
+Dokter:
+- id_dokter (Primary Key)
+- nama_dokter
+- alamat
+- tarif
+- spesialisasi
+- no_hp
+- id_poly (Foreign Key)
+
+Pasien:
+- id_pasien (Primary Key)
+- no_reg
+- nama_pasien
+- jk (Jenis Kelamin)
+- alamat
+- id_kategori (Foreign Key)
+- no_hp
+
+KategoriPasien:
+- id_kategori (Primary Key)
+- nama_kategori
+
+Kunjungan:
+- id_kunjungan (Primary Key)
+- id_pasien (Foreign Key)
+- id_poly (Foreign Key)
+- id_dokter (Foreign Key)
+- tanggal
+- keluhan
+- diagnosa
+- tindakan
+
+Relasi:
+• Poly 1 ——— * Dokter
+• Poly 1 ——— * Kunjungan
+• Dokter 1 ——— * Kunjungan
+• Pasien 1 ——— * Kunjungan
+• Pasien * ——— 1 KategoriPasien
+
+${'='.repeat(50)}
+Generated: ${new Date().toLocaleDateString('id-ID')}
+Niko Surya Adi Prananta`;
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'WEB_Skill_Test_Niko_Surya_Adi_Prananta.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+        
+        // Enhance print functionality
+        window.addEventListener('beforeprint', function() {
+            document.getElementById('print-date').textContent = new Date().toLocaleDateString('id-ID');
+        });
+    </script>
+</body>
+</html>
